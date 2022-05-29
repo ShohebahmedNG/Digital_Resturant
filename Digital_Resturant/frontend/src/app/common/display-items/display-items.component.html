@@ -1,0 +1,45 @@
+<div class="container display" >
+    <div class="card " style="min-width: 15rem; margin: 10px;" *ngFor="let item of items">
+        <img class="card-img-top" src={{item.imagePath}} alt="Card image cap" width="270px" height="270px">
+        <div class="card-body">
+          <div class="card-title d-flex justify-content-between" >
+            <h5 >{{item.name}}</h5>
+            <h5 class="text-primary">Rs. {{item.price}}</h5>
+          </div>
+          <!-- <h5 class="card-title">{{item.name}}</h5> -->
+          <p class="card-text">{{item.description}}</p>
+
+              <div *ngIf="currentUserRole == 'admin' && isAuth">
+                <button class="btn btn-primary mr-2" (click)="itemId=item.id;callEdit()" >Edit</button> 
+                <button class="btn btn-danger" (click)="itemId=item.id;setShowConfirmation()">Delete</button>
+              </div>
+
+              <div *ngIf="currentUserRole == 'user' && isAuth">
+                <button class="btn btn-danger" (click)="addToCart(item)">Add to Cart</button>
+              </div>
+          
+        </div>
+      </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" [ngClass]="{'showModal': showConfirmation}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close"  (click)="setShowConfirmation()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="setShowConfirmation()">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="setShowConfirmation();deleteItem()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

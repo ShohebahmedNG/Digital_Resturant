@@ -1,0 +1,52 @@
+<header *ngIf="!isAuth"  class="bg-secondary">
+    <a  routerLink="/" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <div class="d-flex flex-row-reverse" style="width: 100%;">
+        <a  routerLink="/signup" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Signup</a>
+        <a  routerLink="/login" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Login</a>
+    </div>
+
+</header>
+<header *ngIf="currentUserRole=='admin'" class="bg-secondary">
+    <a  routerLink="/" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a routerLink="/admin/create"  routerLinkActive="active" 
+    [routerLinkActiveOptions]="{exact:true}" >Create</a>
+    <div class="d-flex flex-row-reverse dropdown show" style="width: 100%;">
+        
+        <div class="d-flex flex-row-reverse dropdown show" style="width: 100%;">
+
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Hello, {{usermail}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item" (click)="logout()" >Logout</div >
+              </div>
+          </div>
+      </div>
+    </div>
+</header>
+
+<header *ngIf="currentUserRole=='user'" class="bg-secondary">
+    <a  routerLink="/" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a  routerLink="/user/cart" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}"><i class="fas fa-shopping-cart"></i>{{cartItemLen}}</a>
+
+    <div class="d-flex flex-row-reverse dropdown show" style="width: 100%;">
+
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Hello, {{usermail}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item" routerLink="/user/shopping-history" >Order History</div>
+                <div class="dropdown-divider"></div>
+              <div class="dropdown-item" (click)="logout()" >Logout</div >
+            </div>
+        </div>
+    </div>
+</header>

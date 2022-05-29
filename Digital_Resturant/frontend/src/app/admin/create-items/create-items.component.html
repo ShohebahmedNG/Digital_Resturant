@@ -1,0 +1,25 @@
+
+    <form [formGroup]="createForm" class="container" (submit)="addItem()" style="margin-top: 20px;">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Item Name</label>
+          <input type="text" class="form-control" placeholder="Item Name" formControlName="name">
+          <small id="emailHelp" class="form-text text-danger" *ngIf="createForm.get('name').invalid && (createForm.get('name').dirty || createForm.get('name').touched)">Please enter a name</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Price</label>
+          <input type="text" class="form-control"  placeholder="Item Price in Rs." formControlName="price">
+          <small class="form-text text-danger" *ngIf="createForm.get('price').invalid && (createForm.get('price').dirty || createForm.get('price').touched)">Please provide the price</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" rows="3" placeholder="Item Description" formControlName="description"></textarea>
+            <small class="form-text text-danger" *ngIf="createForm.get('description').invalid && (createForm.get('description').dirty || createForm.get('description').touched)">Please provide a description</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Upload image</label>
+            <input type="file" class="form-control-file"  (change)="imageChange($event)">
+            <small class="form-text text-danger" *ngIf="createForm.get('image').invalid && (createForm.get('image').dirty || createForm.get('image').touched)">You have to upload an image</small>
+          </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  

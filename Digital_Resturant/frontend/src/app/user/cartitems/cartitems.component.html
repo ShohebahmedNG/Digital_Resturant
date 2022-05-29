@@ -1,0 +1,57 @@
+<div class="container" style="min-width: 600px;">
+  <div class="accordion" id="accordionExample" *ngFor="let cart of cartItems; let i=index" >
+    <div class="card">
+      <div class="card-header" id="headingOne" style="padding-left:25px; padding-right: 25px;">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true" aria-controls="collapseOne" style="min-width: 100%; text-decoration: none;">
+            <div class="d-flex justify-content-between " style="min-width: 400px;">
+              <h3 style="padding-top: 20px; height: 100%;">
+                {{cart.name}}
+              </h3>
+              <img src={{cart.imagePath}} alt="Card image cap" width="80px" height="70px">
+            </div>
+          </button>
+        </h5>
+      </div>
+  
+      <div [attr.id]="'collapseOne'+i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="row " >
+            <div class="col-4">
+              <h4 class="text-secondary">{{cart.description}}</h4>
+              </div>
+            <div class="col-4">
+              <div class="d-flex justify-content-around " >
+                <h5 >qty : </h5>
+                <input type="number" value="1" style="width: 40%;" class="form-control" min="1" (input)="calculateTotalPrice()" #qty>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="d-flex justify-content-around " >
+                <h5 class="text-secondary" >Price : </h5>
+                <h5 class="text-secondary" #itemPrice>{{cart.price}}</h5>
+                
+              </div>
+            </div>
+            <div class="col-2 d-flex flex-row-reverse" >
+              <button class="btn" style="padding: 0; padding-right: 25px;" (click)="removeItem(cart.id)"><i class="far fa-trash-alt fa-2x text-danger"></i></button>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="row d-flex justify-content-around" *ngIf="cartItems.length>0" style="padding-top: 30px; padding-bottom: 35px; padding-left:25px; padding-right: 25px;">
+    <h2 class="text-info col-4" style="font-weight: normal; font-family: 'Times New Roman', Times, serif;" style="padding-left: 25px;">Total Price : </h2>
+    <h2 class="text-info col-3" style="font-weight: normal; font-family: 'Times New Roman', Times, serif;">Rs. {{totalPrice}}</h2>
+    <div class="col-5 d-flex justify-content-end" style="padding: 0 35px;">
+      <button class="btn btn-danger" style="width: 70%;" (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+  <p *ngIf="cartItems.length==0">Your Cart is empty</p>
+
+</div>
+
