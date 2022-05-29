@@ -1,3 +1,3 @@
-## Food Ordering System
+##Digital Resturant
 
-mean stack project
+##Mindtree Comprehensive
